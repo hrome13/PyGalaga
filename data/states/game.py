@@ -1,6 +1,27 @@
 import pygame as pg
-
 from ..classes import enemy, player1, player2, projectile
+
+
+# define colors
+black = (0, 0, 0)
+green = (40, 200, 150)
+blue = (30, 50, 200)
+white = (255, 255, 255)
+red = (255, 0, 0)
+
+# player attributes
+player_width = 10
+player_height = 10
+player_speed = 0.1
+
+# projectile attributes
+projectile_height = 9
+projectile_width = 3
+projectile_speed = 0.5
+
+# enemy attributes
+enemy_width = 20
+enemy_height = 10
 
 
 def collides(obj1, obj2):
@@ -16,17 +37,6 @@ def play_game(num_players):
     # set up the screen
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
 
-    # define colors
-    black = (0, 0, 0)
-    green = (40, 200, 150)
-    blue = (30, 50, 200)
-    white = (255, 255, 255)
-    red = (255, 0, 0)
-
-    # initialize the player's position
-    player_width = 10
-    player_height = 10
-    player_speed = 0.1
     if num_players == 1:
         player_pos = [screen.get_width() // 2, (screen.get_height() * 4) // 5]
         player1_ = player1.Player1(player_pos, player_width, player_height, player_speed)
@@ -43,14 +53,9 @@ def play_game(num_players):
 
     # initialize the list of projectiles
     projectiles = []
-    projectile_height = 9
-    projectile_width = 3
-    projectile_speed = 0.5
 
     # initialize the list of enemies
     enemy_pos = [[50, 0], [100,0],[150, 0], [200, 0], [250, 0], [300, 0], [350, 0]]
-    enemy_width = 20
-    enemy_height = 10
     enemies = []
     for pos in enemy_pos:
         enemies.append(enemy.Enemy(pos, enemy_width, enemy_height))
@@ -59,7 +64,6 @@ def play_game(num_players):
     running = True
     
     while running:
-        # player1_, player2_ = players
 
         # check for events
         for event in pg.event.get():
@@ -121,7 +125,6 @@ def play_game(num_players):
 
         # update the display
         pg.display.update()
-
 
     # # quit Pygame
     pg.quit()

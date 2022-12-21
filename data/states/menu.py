@@ -1,5 +1,21 @@
 import pygame as pg
 
+# light shade of the button
+color_light = (170,170,170)
+
+# dark shade of the button
+color_dark = (100,100,100)
+
+# define colors
+black = (0, 0, 0)
+green = (40, 200, 150)
+blue = (30, 50, 200)
+white = (255, 255, 255)
+red = (255, 0, 0)
+
+# mouse button left click
+LEFT = 1
+
 
 # game loop
 def display_menu():
@@ -11,21 +27,6 @@ def display_menu():
 
     #then instantiate and start your controller
     pg.mixer.init()
-
-
-    # light shade of the button
-    color_light = (170,170,170)
-    
-    # dark shade of the button
-    color_dark = (100,100,100)
-
-    # define colors
-    black = (0, 0, 0)
-    green = (40, 200, 150)
-    blue = (30, 50, 200)
-    white = (255, 255, 255)
-    red = (255, 0, 0)
-    LEFT = 1
 
     # set up the screen
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)

@@ -2,19 +2,20 @@ import pygame as pg
 
 LEFT = 1
 
+# define colors
+black = (0, 0, 0)
+green = (40, 200, 150)
+blue = (30, 50, 200)
+white = (255, 255, 255)
+red = (255, 0, 0)
+
 def win_screen():
     # set up the screen
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
 
     # set the title of the window
-    pg.display.set_caption('Winner!')
+    pg.display.set_caption('Winner :D')
 
-    # define colors
-    black = (0, 0, 0)
-    green = (40, 200, 150)
-    blue = (30, 50, 200)
-    white = (255, 255, 255)
-    red = (255, 0, 0)
     pass
 
 def lose_screen():
@@ -23,13 +24,6 @@ def lose_screen():
 
     # set the title of the window
     pg.display.set_caption('Loser :(')
-
-    # define colors
-    black = (0, 0, 0)
-    green = (40, 200, 150)
-    blue = (30, 50, 200)
-    white = (255, 255, 255)
-    red = (255, 0, 0)
 
     running = True
 
