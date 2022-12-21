@@ -100,7 +100,7 @@ def play_game(num_players):
             if projectile_.bottom < 0:
                 projectiles.remove(projectile_)
             for enemy_ in enemies:
-                if collides(projectile_, enemy_):
+                if collides(projectile_, enemy_) or collides(enemy_, projectile_):
                     pg.mixer.music.load('resources/soundeffects/Explosions/Short/sfx_exp_short_hard6.wav')
                     pg.mixer.music.play()
                     enemies.remove(enemy_)
@@ -109,8 +109,15 @@ def play_game(num_players):
                         return "win"
 
         # draw each player on the screen
-        for player in players:
-            pg.draw.rect(screen, blue, pg.Rect(player.left, player.top, player_width, player_height))
+        for i in range(len(players)):
+            player = players[i]
+            if i == 0:
+                color = blue
+            elif i == 1:
+                color = green
+            else:
+                color = black
+            pg.draw.rect(screen, color, pg.Rect(player.left, player.top, player_width, player_height))
 
         # draw each projectile on the screen
         for projectile_ in projectiles:
@@ -119,7 +126,7 @@ def play_game(num_players):
         # draw each enemy on the screen
         for enemy_ in enemies:
             for player in players:
-                if collides(enemy_, player):
+                if collides(enemy_, player) or collides(player, enemy_):
                     return "loss"
             pg.draw.rect(screen, red, pg.Rect(enemy_.left, enemy_.top, enemy_width, enemy_height))
 

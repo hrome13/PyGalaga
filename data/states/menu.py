@@ -83,7 +83,7 @@ def display_menu():
                 for i in range(len(buttons)):
                     button_rect, button_surface = buttons[i]
                     if button_rect.collidepoint(mouse[0], mouse[1]):
-                        return 1
+                        return i + 1
 
         # if mouse is hovered on a button it
         # changes to lighter shade 
