@@ -16,7 +16,38 @@ def win_screen():
     # set the title of the window
     pg.display.set_caption('Winner :D')
 
-    pass
+    # defining a font
+    smallfont = pg.font.SysFont('Corbel',45)
+    
+    # render victory text
+    text = smallfont.render('Congrats! You won!' , True , black)
+
+    # fill screen with white
+    screen.fill(white)
+
+    # get the rectangle for the text surface
+    text_rect = text.get_rect()
+
+    # center the text on the screen
+    text_rect.center = (screen.get_width() // 2, screen.get_height() // 2)
+
+    # blit the text surface onto the screen
+    screen.blit(text, text_rect)
+
+    pg.display.update()
+
+    running = True
+
+    while running:
+
+        # check for events
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                # if it is, stop the loop
+                running = False
+    
+    pg.quit()
+    return
 
 def lose_screen():
     # set up the screen
