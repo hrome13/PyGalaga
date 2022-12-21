@@ -80,7 +80,7 @@ def display_menu():
             state = pg.mouse.get_pressed()
             if event.type == pg.QUIT:
                 # if it is, stop the loop
-                return False
+                running = False
             elif event.type == pg.MOUSEBUTTONDOWN and event.button == LEFT:
                 if button_rect.collidepoint(mouse[0], mouse[1]):
                     return True
@@ -107,6 +107,6 @@ def display_menu():
         pg.display.update()
         
 
-
-    # # quit Pygame
-    # pg.quit()
+    # quit Pygame
+    pg.quit()
+    return False

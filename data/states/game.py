@@ -112,7 +112,7 @@ def play_game():
                     enemies.remove(enemy_)
                     projectiles.remove(projectile_)
                     if len(enemies) == 0:
-                        return True
+                        return "win"
 
         # draw each player on the screen
         pg.draw.rect(screen, blue, pg.Rect(player1_.left, player1_.top, player_width, player_height))
@@ -125,7 +125,7 @@ def play_game():
         # draw each enemy on the screen
         for enemy_ in enemies:
             if collides(enemy_, player1_) or collides(enemy_, player2_):
-                return False
+                return "loss"
             pg.draw.rect(screen, red, pg.Rect(enemy_.left, enemy_.top, enemy_width, enemy_height))
 
         # update the display
@@ -133,4 +133,4 @@ def play_game():
 
 
     # # quit Pygame
-    # pg.quit()
+    pg.quit()
