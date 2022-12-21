@@ -28,7 +28,7 @@ def play_game(num_players):
     player_height = 10
     player_speed = 0.1
     if num_players == 1:
-        player_pos = screen.get_width() // 2, (screen.get_height() * 4) // 5
+        player_pos = [screen.get_width() // 2, (screen.get_height() * 4) // 5]
         player1_ = player1.Player1(player_pos, player_width, player_height, player_speed)
         players = [player1_]
     elif num_players == 2:
