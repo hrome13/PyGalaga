@@ -126,5 +126,5 @@ def play_game(num_players):
         # update the display
         pg.display.update()
 
-    # # quit Pygame
+    # quit Pygame
     pg.quit()
