@@ -38,21 +38,18 @@ def display_menu():
     button_y = (screen_height - button_height) // 2
 
     # Create a surface for the start button
-    button_surface = pg.Surface((button_width, button_height))
-
-    # Create a rect for the start button
-    button_rect = pg.Rect(button_x, button_y, button_width, button_height)
+    one_player_surface = pg.Surface((button_width, button_height))
+    two_player_surface = pg.Surface((button_width, button_height))
 
     # Fill the surface with a solid color
-    button_surface.fill(color_light)
+    one_player_surface.fill(color_light)
+    two_player_surface.fill(color_light)
 
-    # stores the width of the
-    # screen into a variable
-    width = screen.get_width()
-    
-    # stores the height of the
-    # screen into a variable
-    height = screen.get_height()
+    # Create a rect for the start button
+    one_player_rect = pg.Rect(button_x, button_y, button_width, button_height)
+    two_player_rect = pg.Rect(button_x, button_y + button_height * 1.5, button_width, button_height)
+
+    buttons = [(one_player_rect, one_player_surface), (two_player_rect, two_player_surface)]
 
 
     # defining a font
@@ -60,9 +57,9 @@ def display_menu():
     
     # rendering a text written in
     # this font
-    text = smallfont.render('Start' , True , black)
-    text_width, text_height = text.get_size()
-    print(text.get_size())
+    one_text = smallfont.render('1 Player' , True , black)
+    two_text = smallfont.render('2 Players' , True , black)
+    texts = [one_text, two_text]
 
     # set the title of the window
     pg.display.set_caption('PyGalaga')
@@ -82,31 +79,38 @@ def display_menu():
                 # if it is, stop the loop
                 running = False
             elif event.type == pg.MOUSEBUTTONDOWN and event.button == LEFT:
-                if button_rect.collidepoint(mouse[0], mouse[1]):
-                    return True
+                for i in range(len(buttons)):
+                    button_rect, button_surface = buttons[i]
+                    if button_rect.collidepoint(mouse[0], mouse[1]):
+                        return 1
 
         # if mouse is hovered on a button it
         # changes to lighter shade 
-        if button_rect.collidepoint(mouse[0], mouse[1]):
-            # Change the appearance of the button to give the appearance of a hover state
-            button_surface.fill(color_dark)
-        else:
-            # Reset the appearance of the button
-            button_surface.fill(color_light)
+        for button_rect, button_surface in buttons:
+            if button_rect.collidepoint(mouse[0], mouse[1]):
+                # Change the appearance of the button to give the appearance of a hover state
+                button_surface.fill(color_dark)
+            else:
+                # Reset the appearance of the button
+                button_surface.fill(color_light)
         
         # draw the button
-        screen.blit(button_surface, (button_x, button_y))
+        for button_rect, button_surface in buttons:
+            screen.blit(button_surface, (button_rect.left, button_rect.top))
 
         # superimposing the text onto our button
-        text_x = (screen_width - text_width) // 2
-        text_y = (screen_height - text_height) // 2
-        # print(text_x, text_y, button_x, button_y)
-        screen.blit(text, (text_x, text_y))
-
+        for i in range(len(texts)):
+            text = texts[i]
+            text_x = (screen_width - text.get_width()) // 2
+            if i == 0:
+                text_y = (screen_height - text.get_height()) // 2
+            elif i == 1:
+                text_y = (screen_height - text.get_height()) // 2 + button_height * 1.5
+            screen.blit(text, (text_x, text_y))
 
         pg.display.update()
         
 
     # quit Pygame
     pg.quit()
-    return False
+    return 0
