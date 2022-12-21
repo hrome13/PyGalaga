@@ -56,22 +56,35 @@ def lose_screen():
     # set the title of the window
     pg.display.set_caption('Loser :(')
 
+    # defining a font
+    smallfont = pg.font.SysFont('Corbel',45)
+    
+    # render victory text
+    text = smallfont.render('You lost! Better luck next time!' , True , black)
+
+    # fill screen with white
+    screen.fill(white)
+
+    # get the rectangle for the text surface
+    text_rect = text.get_rect()
+
+    # center the text on the screen
+    text_rect.center = (screen.get_width() // 2, screen.get_height() // 2)
+
+    # blit the text surface onto the screen
+    screen.blit(text, text_rect)
+
+    pg.display.update()
+
     running = True
 
     while running:
 
         # check for events
         for event in pg.event.get():
-            state = pg.mouse.get_pressed()
             if event.type == pg.QUIT:
                 # if it is, stop the loop
                 running = False
-            elif event.type == pg.MOUSEBUTTONDOWN and event.button == LEFT:
-                running = False
-        
-        screen.fill(white)
-
-        pg.display.update()
     
-    # quit Pygame
     pg.quit()
+    return
