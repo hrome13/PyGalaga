@@ -27,23 +27,24 @@ def display_menu():
     red = (255, 0, 0)
     LEFT = 1
 
+    # set up the screen
+    screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
+    screen_width, screen_height = screen.get_size()
+
     # Define the dimensions and position of the start button
-    button_width = 200
-    button_height = 50
-    button_x = (640 - button_width) // 2
-    button_y = (480 - button_height) // 2
+    button_width = screen_width // 2
+    button_height = screen_height // 8
+    button_x = (screen_width - button_width) // 2
+    button_y = (screen_height - button_height) // 2
 
     # Create a surface for the start button
     button_surface = pg.Surface((button_width, button_height))
 
-    # Fill the surface with a solid color
-    button_surface.fill((0, 0, 255))
-
     # Create a rect for the start button
     button_rect = pg.Rect(button_x, button_y, button_width, button_height)
 
-    # set up the screen
-    screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
+    # Fill the surface with a solid color
+    button_surface.fill(color_light)
 
     # stores the width of the
     # screen into a variable
@@ -59,9 +60,9 @@ def display_menu():
     
     # rendering a text written in
     # this font
-    text = smallfont.render('Start' , True , white)
-
-    
+    text = smallfont.render('Start' , True , black)
+    text_width, text_height = text.get_size()
+    print(text.get_size())
 
     # set the title of the window
     pg.display.set_caption('PyGalaga')
@@ -97,7 +98,10 @@ def display_menu():
         screen.blit(button_surface, (button_x, button_y))
 
         # superimposing the text onto our button
-        screen.blit(text , (width/2+50,height/2))
+        text_x = (screen_width - text_width) // 2
+        text_y = (screen_height - text_height) // 2
+        # print(text_x, text_y, button_x, button_y)
+        screen.blit(text, (text_x, text_y))
 
 
         pg.display.update()
