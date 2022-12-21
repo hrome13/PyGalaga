@@ -94,7 +94,7 @@ def display_menu():
                 # Reset the appearance of the button
                 button_surface.fill(color_light)
         
-        # draw the button
+        # draw the buttons
         for button_rect, button_surface in buttons:
             screen.blit(button_surface, (button_rect.left, button_rect.top))
 

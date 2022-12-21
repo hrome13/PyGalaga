@@ -11,21 +11,10 @@ def collides(obj1, obj2):
         return (obj1.left > obj2.left and obj1.left < obj2.right) or (obj1.right < obj2.right and obj1.right > obj2.left)
 
 
-def play_game():
-
-    # initialize Pygame
-    # pg.init()
-
-    # pg.mixer.pre_init()
-
-    #then instantiate and start your controller
-    # pg.mixer.init()
+def play_game(num_players):
 
     # set up the screen
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
-
-    # set the title of the window
-    # pg.display.set_caption('PyGalaga')
 
     # define colors
     black = (0, 0, 0)
@@ -35,13 +24,22 @@ def play_game():
     red = (255, 0, 0)
 
     # initialize the player's position
-    player_pos = [[250, 250], [150, 250]]
     player_width = 10
     player_height = 10
     player_speed = 0.1
-    player1_ = player1.Player1(player_pos[0], player_width, player_height, player_speed)
-    player2_ = player2.Player2(player_pos[1], player_width, player_height, player_speed)
-    players = [player1_, player2_]
+    if num_players == 1:
+        player_pos = screen.get_width() // 2, (screen.get_height() * 4) // 5
+        player1_ = player1.Player1(player_pos, player_width, player_height, player_speed)
+        players = [player1_]
+    elif num_players == 2:
+        player_pos = [[250, 250], [150, 250]]
+        player1_ = player1.Player1(player_pos[0], player_width, player_height, player_speed)
+        player2_ = player2.Player2(player_pos[1], player_width, player_height, player_speed)
+        players = [player1_, player2_]
+    else:
+        print(f"Number of players ({num_players}) not implemented.")
+        pg.quit()
+        return
 
     # initialize the list of projectiles
     projectiles = []
@@ -61,7 +59,7 @@ def play_game():
     running = True
     
     while running:
-        player1_, player2_ = players
+        # player1_, player2_ = players
 
         # check for events
         for event in pg.event.get():
@@ -73,29 +71,21 @@ def play_game():
             # check if a key is pressed
             elif event.type == pg.KEYDOWN:
                 keys = pg.key.get_pressed()
-                # check if the space bar is pressed
-                if player1_.took_shot(keys):
-                    # if it is, create a new projectile at player1's position
-                    projectiles.append(projectile.Projectile([player1_.left + player_width/2 - projectile_width/2, player1_.top], 
-                                                projectile_width, projectile_height, projectile_speed))
-                    pg.mixer.music.load('resources/soundeffects/pew.mp3')
-                    pg.mixer.music.play()
-                # check if the left shift key is pressed
-                if player2_.took_shot(keys):
-                    # if it is, create a new projectile at player2's position
-                    projectiles.append(projectile.Projectile([player2_.left + player_width/2 - projectile_width/2, player2_.top], 
-                                                projectile_width, projectile_height, projectile_speed))
-                    pg.mixer.music.load('resources/soundeffects/pew.mp3')
-                    pg.mixer.music.play()
+                # check if a player shot
+                for player in players:
+                    if player.took_shot(keys):
+                        # if it is, create a new projectile at the player's position
+                        projectiles.append(projectile.Projectile([player.left + player_width/2 - projectile_width/2, player.top], 
+                                                    projectile_width, projectile_height, projectile_speed))
+                        pg.mixer.music.load('resources/soundeffects/pew.mp3')
+                        pg.mixer.music.play()
 
         # get the state of the keys
         keys = pg.key.get_pressed()
 
-        # PLAYER 1 MOVEMENT
-        player1_.move(keys)
-
-        # PLAYER 2 MOVEMENT
-        player2_.move(keys)
+        # move the players
+        for player in players:
+            player.move(keys)
 
         # fill the screen with white
         screen.fill(white)
@@ -115,8 +105,8 @@ def play_game():
                         return "win"
 
         # draw each player on the screen
-        pg.draw.rect(screen, blue, pg.Rect(player1_.left, player1_.top, player_width, player_height))
-        pg.draw.rect(screen, green, pg.Rect(player2_.left, player2_.top, player_width, player_height))
+        for player in players:
+            pg.draw.rect(screen, blue, pg.Rect(player.left, player.top, player_width, player_height))
 
         # draw each projectile on the screen
         for projectile_ in projectiles:
@@ -124,8 +114,9 @@ def play_game():
         
         # draw each enemy on the screen
         for enemy_ in enemies:
-            if collides(enemy_, player1_) or collides(enemy_, player2_):
-                return "loss"
+            for player in players:
+                if collides(enemy_, player):
+                    return "loss"
             pg.draw.rect(screen, red, pg.Rect(enemy_.left, enemy_.top, enemy_width, enemy_height))
 
         # update the display
