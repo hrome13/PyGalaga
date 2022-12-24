@@ -1,6 +1,8 @@
 import pygame as pg
 from ..classes import enemy, player1, player2, projectile
+import os
 
+sound_library = {}
 
 # define colors
 black = (0, 0, 0)
@@ -31,8 +33,23 @@ def collides(obj1, obj2):
     elif obj1.bottom < obj2.bottom and obj1.bottom > obj2.top:
         return (obj1.left > obj2.left and obj1.left < obj2.right) or (obj1.right < obj2.right and obj1.right > obj2.left)
 
+def load_sounds():
+    """Load all sounds from subdirectories in a dictionary"""
+
+    global sound_library
+
+    for name in os.listdir('resources/used'):
+
+        if name.endswith('.wav') or name.endswith('.mp3'):
+            key = name[:-4]
+            sound_library[key] = pg.mixer.Sound(f'resources/used/{name}')
+
 
 def play_game(num_players):
+
+    global sound_library
+
+    load_sounds()
 
     # set up the screen
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
@@ -81,8 +98,7 @@ def play_game(num_players):
                         # if it is, create a new projectile at the player's position
                         projectiles.append(projectile.Projectile([player.left + player_width/2 - projectile_width/2, player.top], 
                                                     projectile_width, projectile_height, projectile_speed))
-                        pg.mixer.music.load('resources/soundeffects/pew.mp3')
-                        pg.mixer.music.play()
+                        sound_library['pew'].play()
 
         # get the state of the keys
         keys = pg.key.get_pressed()
@@ -101,8 +117,8 @@ def play_game(num_players):
                 projectiles.remove(projectile_)
             for enemy_ in enemies:
                 if collides(projectile_, enemy_) or collides(enemy_, projectile_):
-                    pg.mixer.music.load('resources/soundeffects/Explosions/Short/sfx_exp_short_hard6.wav')
-                    pg.mixer.music.play()
+                    sound_library['sfx_exp_short_hard6'].play()
+
                     enemies.remove(enemy_)
                     projectiles.remove(projectile_)
                     if len(enemies) == 0:
