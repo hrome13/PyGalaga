@@ -1,5 +1,5 @@
 # PyGalaga
-My version of a 2-player Galaga using Python and the library pygame.
+My version of a 1- or 2-player Galaga using Python and the library pygame.
 
 To play, run the file `pygalaga.py`.
 
