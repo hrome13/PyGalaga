@@ -28,6 +28,8 @@ def display_menu():
     #then instantiate and start your controller
     pg.mixer.init()
 
+    pg.mixer.Sound('resources/used/01 Eggy Toast - Fun.mp3').play(loops = -1)
+
     # set up the screen
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
     screen_width, screen_height = screen.get_size()
@@ -83,6 +85,7 @@ def display_menu():
                 for i in range(len(buttons)):
                     button_rect, button_surface = buttons[i]
                     if button_rect.collidepoint(mouse[0], mouse[1]):
+                        pg.mixer.fadeout(500)
                         return i + 1
 
         # if mouse is hovered on a button it
