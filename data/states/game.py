@@ -54,6 +54,8 @@ def play_game(num_players):
     # set up the screen
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
 
+    pg.mixer.Sound('resources/used/02 Eggy Toast - Ghost.mp3').play(loops = -1)
+
     if num_players == 1:
         player_pos = [screen.get_width() // 2, (screen.get_height() * 4) // 5]
         player1_ = player1.Player1(player_pos, player_width, player_height, player_speed)
@@ -65,6 +67,7 @@ def play_game(num_players):
         players = [player1_, player2_]
     else:
         print(f"Number of players ({num_players}) not implemented.")
+        pg.mixer.fadeout(500)
         pg.quit()
         return
 
@@ -122,6 +125,7 @@ def play_game(num_players):
                     enemies.remove(enemy_)
                     projectiles.remove(projectile_)
                     if len(enemies) == 0:
+                        pg.mixer.fadeout(500)
                         return "win"
 
         # draw each player on the screen
@@ -143,6 +147,7 @@ def play_game(num_players):
         for enemy_ in enemies:
             for player in players:
                 if collides(enemy_, player) or collides(player, enemy_):
+                    pg.mixer.fadeout(500)
                     return "loss"
             pg.draw.rect(screen, red, pg.Rect(enemy_.left, enemy_.top, enemy_width, enemy_height))
 
