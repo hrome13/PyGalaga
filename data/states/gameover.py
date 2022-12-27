@@ -53,6 +53,9 @@ def lose_screen():
     # set up the screen
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
 
+    # play defeat music
+    pg.mixer.Sound('resources/used/Funeral March.wav').play(loops = -1)
+
     # set the title of the window
     pg.display.set_caption('Loser :(')
 
@@ -86,5 +89,6 @@ def lose_screen():
                 # if it is, stop the loop
                 running = False
     
+    pg.mixer.fadeout(500)
     pg.quit()
     return
