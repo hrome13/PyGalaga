@@ -54,6 +54,7 @@ def play_game(num_players):
     # set up the screen
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
 
+    # play the game music
     pg.mixer.Sound('resources/used/02 Eggy Toast - Ghost.mp3').play(loops = -1)
 
     if num_players == 1:
@@ -81,16 +82,17 @@ def play_game(num_players):
         enemies.append(enemy.Enemy(pos, enemy_width, enemy_height))
 
     # initialize the game loop
-    running = True
+    status = "playing"
     
-    while running:
+    while status is "playing":
 
         # check for events
         for event in pg.event.get():
             # check if the event is the X button 
             if event.type == pg.QUIT:
                 # if it is, stop the loop
-                running = False
+                status = "quit"
+                break
 
             # check if a key is pressed
             elif event.type == pg.KEYDOWN:
@@ -124,9 +126,11 @@ def play_game(num_players):
 
                     enemies.remove(enemy_)
                     projectiles.remove(projectile_)
+
+                    # win if you shoot all enemies
                     if len(enemies) == 0:
-                        pg.mixer.fadeout(500)
-                        return "win"
+                        status = "win"
+                        break
 
         # draw each player on the screen
         for i in range(len(players)):
@@ -147,12 +151,17 @@ def play_game(num_players):
         for enemy_ in enemies:
             for player in players:
                 if collides(enemy_, player) or collides(player, enemy_):
-                    pg.mixer.fadeout(500)
-                    return "loss"
+                    status = "loss"
+                    break
+
             pg.draw.rect(screen, red, pg.Rect(enemy_.left, enemy_.top, enemy_width, enemy_height))
 
         # update the display
         pg.display.update()
 
-    # quit Pygame
-    pg.quit()
+    if status is "quit":
+        pg.quit()
+        return
+    else:
+        pg.mixer.fadeout(500)
+        return status
