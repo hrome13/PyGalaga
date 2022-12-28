@@ -13,6 +13,9 @@ def win_screen():
     # set up the screen
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
 
+    # play victory music 
+    pg.mixer.Sound('resources/used/Antonio Vivaldi - Spring  EPIC 8BIT!.mp3').play(loops = -1)
+
     # set the title of the window
     pg.display.set_caption('Winner :D')
 
@@ -46,6 +49,7 @@ def win_screen():
                 # if it is, stop the loop
                 running = False
     
+    pg.mixer.fadeout(500)
     pg.quit()
     return
 
