@@ -67,7 +67,7 @@ def lose_screen():
     smallfont = pg.font.SysFont('Corbel',45)
     
     # render victory text
-    text = smallfont.render('You lost! Better luck next time!' , True , black)
+    text = smallfont.render('You lost! Aw shucks!' , True , black)
 
     # fill screen with white
     screen.fill(white)
