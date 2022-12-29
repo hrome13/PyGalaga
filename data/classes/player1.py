@@ -8,28 +8,19 @@ class Player1(player.Player):
     def move(self, keys):
         # check if the right arrow key is pressed
         if keys[pygame.K_RIGHT]:
-            # if it is, move the player to the right
-            self.pos[0] += self.speed
-            self.left += self.speed
-            self.right += self.speed
+            player.move_right()
+
         # check if the left arrow key is pressed
         if keys[pygame.K_LEFT]:
-            # if it is, move the player to the left
-            self.pos[0] -= self.speed
-            self.left -= self.speed
-            self.right -= self.speed
+            player.move_left()
+
         # check if the up arrow key is pressed
         if keys[pygame.K_UP]:
-            # if it is, move the player up
-            self.pos[1] -= self.speed
-            self.top -= self.speed
-            self.bottom -= self.speed
+            player.move_up()
+
         # check if the down arrow key is pressed
         if keys[pygame.K_DOWN]:
-            # if it is, move the player down
-            self.pos[1] += self.speed
-            self.top += self.speed
-            self.bottom += self.speed
+            player.move_down()
 
     def took_shot(self, keys):
         return keys[pygame.K_SPACE]
