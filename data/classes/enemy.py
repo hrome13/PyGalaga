@@ -1,10 +1,11 @@
 class Enemy:
-    def __init__(self, pos, width, height):
+    def __init__(self, pos, width, height, speed):
         self._pos = pos
         self._left = pos[0]
         self._right = pos[0] + width
         self._top = pos[1]
         self._bottom = pos[1] + height
+        self._speed = speed
 
     @property
     def pos(self):
@@ -25,3 +26,7 @@ class Enemy:
     @property
     def bottom(self):
         return self._bottom
+
+    @property
+    def speed(self):
+        return self._speed

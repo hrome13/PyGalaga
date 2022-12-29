@@ -24,6 +24,7 @@ projectile_speed = 0.5
 # enemy attributes
 enemy_width = 20
 enemy_height = 10
+enemy_speed = player_speed // 2
 
 
 def collides(obj1, obj2):
@@ -79,7 +80,7 @@ def play_game(num_players):
     enemy_pos = [[50, 0], [100,0],[150, 0], [200, 0], [250, 0], [300, 0], [350, 0]]
     enemies = []
     for pos in enemy_pos:
-        enemies.append(enemy.Enemy(pos, enemy_width, enemy_height))
+        enemies.append(enemy.Enemy(pos, enemy_width, enemy_height, enemy_speed))
 
     # initialize the game loop
     status = "playing"
