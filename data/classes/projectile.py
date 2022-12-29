@@ -58,6 +58,6 @@ class Projectile:
         self._speed = speed
 
     def move(self):
-        self.pos = [self.pos()[0], self.pos()[1] - self.speed()]
-        self.top = self.top() - self.speed()
-        self.bottom = self.bottom() - self.speed()
+        self.pos = [self.pos[0], self.pos[1] - self.speed]
+        self.top = self.top - self.speed
+        self.bottom = self.bottom - self.speed
