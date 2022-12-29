@@ -34,45 +34,45 @@ class Player:
         return self._speed
 
     @pos.setter
-    def update_pos(self, pos):
+    def pos(self, pos):
         self._pos = pos
 
     @left.setter
-    def update_left(self, left):
+    def left(self, left):
         self._left = left
 
     @right.setter
-    def update_right(self, right):
+    def right(self, right):
         self._right = right
 
     @top.setter
-    def update_top(self, top):
+    def top(self, top):
         self._top = top
 
     @bottom.setter
-    def update_bottom(self, bottom):
+    def bottom(self, bottom):
         self._bottom = bottom
 
     @speed.setter
-    def update_speed(self, speed):
+    def speed(self, speed):
         self._speed = speed
 
     def move_left(self):
-        self.update_pos([self.pos()[0] - self.speed(), self.pos()[1]])
-        self.update_left(self.left() - self.speed())
-        self.update_right(self.right() - self.speed())
+        self.pos = [self.pos[0] - self.speed, self.pos[1]]
+        self.left = self.left - self.speed
+        self.right = self.right - self.speed
 
     def move_right(self):
-        self.update_pos([self.pos()[0] + self.speed(), self.pos()[1]])
-        self.update_left(self.left() + self.speed())
-        self.update_right(self.right() + self.speed())
+        self.pos = [self.pos[0] + self.speed, self.pos[1]]
+        self.left = self.left + self.speed
+        self.right = self.right + self.speed
 
     def move_up(self):
-        self.update_pos([self.pos()[0], self.pos()[1] - self.speed()])
-        self.update_top(self.top() - self.speed())
-        self.update_bottom(self.bottom() - self.speed())
+        self.pos = [self.pos[0], self.pos[1] - self.speed]
+        self.top = self.top - self.speed
+        self.bottom = self.bottom - self.speed
 
     def move_down(self):
-        self.update_pos([self.pos()[0], self.pos()[1] + self.speed()])
-        self.update_top(self.top() + self.speed())
-        self.update_bottom(self.bottom() + self.speed())
+        self.pos = [self.pos[0], self.pos[1] + self.speed]
+        self.top = self.top + self.speed
+        self.bottom = self.bottom + self.speed
