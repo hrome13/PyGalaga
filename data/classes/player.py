@@ -1,5 +1,3 @@
-import pygame
-
 class Player:
     def __init__(self, pos, width, height, speed):
         self._pos = pos
