@@ -33,27 +33,27 @@ class Player:
     def speed(self):
         return self._speed
 
-    @pos.setter()
+    @pos.setter
     def update_pos(self, pos):
         self._pos = pos
 
-    @left.setter()
+    @left.setter
     def update_left(self, left):
         self._left = left
 
-    @right.setter()
+    @right.setter
     def update_right(self, right):
         self._right = right
 
-    @top.setter()
+    @top.setter
     def update_top(self, top):
         self._top = top
 
-    @bottom.setter()
+    @bottom.setter
     def update_bottom(self, bottom):
         self._bottom = bottom
 
-    @speed.setter()
+    @speed.setter
     def update_speed(self, speed):
         self._speed = speed
 
