@@ -7,10 +7,10 @@ To play, run the file `pygalaga.py`.
 Controls
 --------
 
-Player 1 (Green):
-Move - WASD
-Shoot - Left shift
-
-Player 2 (Blue):
+Player 1 (Blue):
 Move - Arrow keys
 Shoot - Space bar
+
+Player 2 (Green):
+Move - WASD
+Shoot - Left shift
