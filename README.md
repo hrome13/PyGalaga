@@ -8,9 +8,9 @@ Controls
 --------
 
 Player 1 (Blue):
-Move - Arrow keys
-Shoot - Space bar
+ - Move - Arrow keys
+ - Shoot - Space bar
 
 Player 2 (Green):
-Move - WASD
-Shoot - Left shift
+ - Move - WASD
+ - Shoot - Left shift
