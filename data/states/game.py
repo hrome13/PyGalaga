@@ -109,8 +109,8 @@ def play_game(num_players):
         keys = pg.key.get_pressed()
 
         # move the players
-        for player in players:
-            player.move(keys)
+        for player_ in players:
+            player_.move(keys)
 
         # fill the screen with white
         screen.fill(white)
@@ -134,14 +134,14 @@ def play_game(num_players):
 
         # draw each player on the screen
         for i in range(len(players)):
-            player = players[i]
+            player_ = players[i]
             if i == 0:
                 color = blue
             elif i == 1:
                 color = green
             else:
                 color = black
-            pg.draw.rect(screen, color, pg.Rect(player.left, player.top, player_width, player_height))
+            pg.draw.rect(screen, color, pg.Rect(player_.left, player_.top, player_width, player_height))
 
         # draw each projectile on the screen
         for projectile_ in projectiles:
@@ -149,8 +149,8 @@ def play_game(num_players):
         
         # draw each enemy on the screen
         for enemy_ in enemies:
-            for player in players:
-                if collides(enemy_, player) or collides(player, enemy_):
+            for player_ in players:
+                if collides(enemy_, player_) or collides(player_, enemy_):
                     status = "loss"
                     break
 
