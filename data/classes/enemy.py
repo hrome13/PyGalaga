@@ -1,22 +1,27 @@
 class Enemy:
     def __init__(self, pos, width, height):
-        self.pos = pos
-        self.left = pos[0]
-        self.right = pos[0] + width
-        self.top = pos[1]
-        self.bottom = pos[1] + height
+        self._pos = pos
+        self._left = pos[0]
+        self._right = pos[0] + width
+        self._top = pos[1]
+        self._bottom = pos[1] + height
 
+    @property
     def pos(self):
-        return self.pos
+        return self._pos
 
+    @property
     def left(self):
-        return self.left
+        return self._left
 
+    @property
     def right(self):
-        return self.right
+        return self._right
 
+    @property
     def top(self):
-        return self.top
+        return self._top
 
+    @property
     def bottom(self):
-        return self.bottom
+        return self._bottom
