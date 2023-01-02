@@ -28,7 +28,7 @@ def display_menu():
     #then instantiate and start your controller
     pg.mixer.init()
 
-    pg.mixer.Sound('resources/used/01 Eggy Toast - Fun.mp3').play(loops = -1)
+    pg.mixer.Sound('pygalaga/resources/used/01 Eggy Toast - Fun.mp3').play(loops = -1)
 
     # set up the screen
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)

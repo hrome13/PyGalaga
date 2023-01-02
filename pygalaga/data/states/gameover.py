@@ -14,7 +14,7 @@ def win_screen():
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
 
     # play victory music 
-    pg.mixer.Sound('resources/used/Antonio Vivaldi - Spring  EPIC 8BIT!.mp3').play(loops = -1)
+    pg.mixer.Sound('pygalaga/resources/used/Antonio Vivaldi - Spring  EPIC 8BIT!.mp3').play(loops = -1)
 
     # set the title of the window
     pg.display.set_caption('Winner :D')
@@ -58,7 +58,7 @@ def lose_screen():
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
 
     # play defeat music
-    pg.mixer.Sound('resources/used/Funeral March.wav').play(loops = -1)
+    pg.mixer.Sound('pygalaga/resources/used/Funeral March.wav').play(loops = -1)
 
     # set the title of the window
     pg.display.set_caption('Loser :(')

@@ -39,11 +39,11 @@ def load_sounds():
 
     global sound_library
 
-    for name in os.listdir('resources/used'):
+    for name in os.listdir('pygalaga/resources/used'):
 
         if name.endswith('.wav') or name.endswith('.mp3'):
             key = name[:-4]
-            sound_library[key] = pg.mixer.Sound(f'resources/used/{name}')
+            sound_library[key] = pg.mixer.Sound(f'pygalaga/resources/used/{name}')
 
 
 def play_game(num_players):
@@ -56,7 +56,7 @@ def play_game(num_players):
     screen = pg.display.set_mode((400, 300), pg.RESIZABLE)
 
     # play the game music
-    pg.mixer.Sound('resources/used/02 Eggy Toast - Ghost.mp3').play(loops = -1)
+    pg.mixer.Sound('pygalaga/resources/used/02 Eggy Toast - Ghost.mp3').play(loops = -1)
 
     if num_players == 1:
         player_pos = [screen.get_width() // 2, (screen.get_height() * 4) // 5]
