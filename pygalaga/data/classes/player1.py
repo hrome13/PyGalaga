@@ -7,7 +7,6 @@ class Player1(player.Player):
 
     def move(self, keys):
         # check if the right arrow key is pressed
-        print(keys)
         if keys.get(pygame.K_RIGHT, False):
             self.move_right()
 
