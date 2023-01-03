@@ -172,10 +172,32 @@ class TestPlayer1(unittest.TestCase):
         self.assertEqual(player1.bottom, 25)
 
     def test_took_shot_no_keys_pressed(self):
-        pass
+        pos = [20,20]
+        width, height = 5, 5
+        speed = 2
+        player1 = Player1(pos, width, height, speed)
+        keys = {}
+
+        result = player1.took_shot(keys)
+        self.assertFalse(result)
 
     def test_took_shot_other_keys_pressed(self):
-        pass
+        pos = [20,20]
+        width, height = 5, 5
+        speed = 2
+        player1 = Player1(pos, width, height, speed)
+        keys = {pygame.K_0: True,
+                pygame.K_LEFT: True}
+
+        result = player1.took_shot(keys)
+        self.assertFalse(result)
 
     def test_took_shot_spacebar_pressed(self):
-        pass
+        pos = [20,20]
+        width, height = 5, 5
+        speed = 2
+        player1 = Player1(pos, width, height, speed)
+        keys = {pygame.K_SPACE: True}
+
+        result = player1.took_shot(keys)
+        self.assertTrue(result)
