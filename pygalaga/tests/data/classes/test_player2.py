@@ -201,3 +201,6 @@ class TestPlayer2(unittest.TestCase):
 
         result = player2.took_shot(keys)
         self.assertTrue(result)
+
+if __name__ == '__main__':
+    unittest.main()
