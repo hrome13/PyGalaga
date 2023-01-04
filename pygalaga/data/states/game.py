@@ -28,11 +28,28 @@ enemy_speed = player_speed // 2
 
 
 def collides(obj1, obj2):
-    # Detect if two objects collide
-    if obj1.top > obj2.top and obj1.top < obj2.bottom:
-        return (obj1.left > obj2.left and obj1.left < obj2.right) or (obj1.right < obj2.right and obj1.right > obj2.left)
-    elif obj1.bottom < obj2.bottom and obj1.bottom > obj2.top:
-        return (obj1.left > obj2.left and obj1.left < obj2.right) or (obj1.right < obj2.right and obj1.right > obj2.left)
+    """Detect if two objects collide"""
+
+    # li = top left of obji
+    # ri = bottom right of obji
+    l1 = obj1.left, obj1.top
+    r1 = obj1.right, obj1.bottom
+    l2 = obj2.left, obj2.top
+    r2 = obj2.right, obj2.bottom
+
+    # if rectangle has area 0, no overlap
+    if l1[0] == r1[0] or l1[1] == r1[1] or r2[0] == l2[0] or l2[1] == r2[1]:
+        return False
+     
+    # If one rectangle is on left side of other
+    if l1[0] > r2[0] or l2[0] > r1[0]:
+        return False
+ 
+    # If one rectangle is above other
+    if r1[1] < l2[1] or r2[1] < l1[1]:
+        return False
+ 
+    return True
 
 def load_sounds():
     """Load all sounds from subdirectories in a dictionary"""
