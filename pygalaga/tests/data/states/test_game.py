@@ -1,4 +1,5 @@
 import unittest
+import pygame as pg
 from pygalaga.data.classes.player import Player
 from pygalaga.data.states.game import collides,  play_game
 
@@ -124,4 +125,8 @@ class TestGame(unittest.TestCase):
         pass
 
     def test_play_game_wrong_num_players(self):
-        pass
+        num_players = 4
+        pg.mixer.init()
+
+        result = play_game(num_players)
+        self.assertIsNone(result)
