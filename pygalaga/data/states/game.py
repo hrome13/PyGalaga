@@ -24,7 +24,7 @@ projectile_speed = 0.5
 # enemy attributes
 enemy_width = 20
 enemy_height = 10
-enemy_speed = player_speed // 2
+enemy_speed = player_speed / 40
 
 
 def collides(obj1, obj2):
@@ -94,10 +94,13 @@ def play_game(num_players):
     projectiles = []
 
     # initialize the list of enemies
-    enemy_pos = [[50, 0], [100,0],[150, 0], [200, 0], [250, 0], [300, 0], [350, 0]]
+    # enemy_pos = [[50, 50], [100, 50],[150, 50], [200, 50], [250, 50], [300, 50], [350, 50]]
+    enemy_pos = [[screen.get_width() // 2, screen.get_height() // 3]] * 5
     enemies = []
+    t = 0
     for pos in enemy_pos:
-        enemies.append(enemy.Enemy(pos, enemy_width, enemy_height, enemy_speed))
+        enemies.append(enemy.Enemy(pos, enemy_width, enemy_height, enemy_speed, t))
+        t += 0.5
 
     # initialize the game loop
     status = "playing"
@@ -167,6 +170,7 @@ def play_game(num_players):
         
         # draw each enemy on the screen
         for enemy_ in enemies:
+            enemy_.move(screen.get_width())#(screen.get_width())
             for player_ in players:
                 if collides(enemy_, player_) or collides(player_, enemy_):
                     status = "loss"

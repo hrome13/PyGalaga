@@ -7,20 +7,20 @@ class Player2(player.Player):
 
     def move(self, keys):
         # check if the `d` key is pressed
-        if keys.get(pygame.K_d, False):
+        if keys[pygame.K_d]:#.get(pygame.K_d, False):
             self.move_right()
 
         # check if the `a` key is pressed
-        if keys.get(pygame.K_a, False):
+        if keys[pygame.K_a]:#.get(pygame.K_a, False):
             self.move_left()
 
         # check if the `w` key is pressed
-        if keys.get(pygame.K_w, False):
+        if keys[pygame.K_w]:#.get(pygame.K_w, False):
             self.move_up()
 
         # check if the `s` key is pressed
-        if keys.get(pygame.K_s, False):
+        if keys[pygame.K_s]:#.get(pygame.K_s, False):
             self.move_down()
 
     def took_shot(self, keys):
-        return keys.get(pygame.K_LSHIFT, False)
+        return keys[pygame.K_LSHIFT]#.get(pygame.K_LSHIFT, False)
