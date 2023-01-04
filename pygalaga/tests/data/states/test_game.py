@@ -99,6 +99,18 @@ class TestGame(unittest.TestCase):
         result = collides(obj2, obj1)
         self.assertTrue(result)
 
+    def test_collides_false(self):
+        pos1 = [10, 10]
+        pos2 = [22, 22]
+        width1, height1 = 10, 10
+        width2, height2 = 7, 3
+        speed = 1
+        obj1 = Player(pos1, width1, height1, speed)
+        obj2 = Player(pos2, width2, height2, speed)
+
+        result = collides(obj1, obj2)
+        self.assertFalse(result)
+
     def test_play_game_one_player_win(self):
         pass
 
