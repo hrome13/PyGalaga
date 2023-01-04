@@ -1,7 +1,6 @@
 from data.states.game import play_game
 from data.states.menu import display_menu
 from data.states.gameover import win_screen, lose_screen
-import pygame as pg
 
 num_players = display_menu()
 if num_players > 0:
